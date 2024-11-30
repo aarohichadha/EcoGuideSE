@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Footprint Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@aptos-labs/aptos-sdk@latest"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
+            background-image: url('carbon.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: rgba(0, 134, 60, 1);
+            padding: 10px 20px;
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 2;
+            color: white;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .nav-options {
+            display: flex;
+        }
+
+        .nav-options a {
+            margin-left: 150px;
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-options a:hover {
+            text-decoration: underline;
+            transform: scale(1.1);
+        }
+
+        .container {
+            margin-top: 80px;
+            background-color: #ffffff;
+            opacity: 0.9;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 20px auto;
+        }
+
+        .questions, .result-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            width: 45%;
+        }
+
+        .questions input, .questions select, .questions button {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .questions button {
+            background-color: #5cb85c;
+            color: white;
+            transition: background-color 0.3s;
+        }
+
+        .questions button:hover {
+            background-color: #4cae4c;
+        }
+
+        .result-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .result-value {
+            font-size: 18px;
+            color: #444;
+        }
+
+        canvas {
+            margin-top: 20px;
+        }
+
+        .logo img {
+            width: 130px;
+        }
+
+        .main-heading {
+            position: relative;
+            z-index: 0;
+            color: white;
+            text-align: center;
+            font-size: 500px;
+            margin-top: 20px;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-section">
+    <header>
+        <div class="header-content">
+
+        <span class = 'logo'>
+            <img src="logo (1).png" alt="">
+        </span>
+        <nav class="nav-options">
+            <a href="EcoSort.html">EcoSort</a>
+            <a href="page3.html">CarbonCalc</a>
+            <a href="page4.html">Green Tips</a>
+        </nav>
+  
+    </div>
+    </header>
+</div>
+    <br><br><br><br><br>
+    <div class="container">
+        <div class="questions">
+            <h2>Carbon Footprint Calculator</h2>
+            <label for="banana-waste">Organic Waste (kg):</label>
+            <input type="number" id="banana-waste" placeholder="Enter banana waste">
+            
+            <label for="plastic-waste">Plastic Waste (kg):</label>
+            <input type="number" id="plastic-waste" placeholder="Enter plastic waste">
+            
+            <label for="paper-waste">Paper Waste (kg):</label>
+            <input type="number" id="paper-waste" placeholder="Enter paper waste">
+            
+            <button onclick="calculateFootprint()">Calculate</button>
+        </div>
+
+        <div class="result-container">
+            <center><h2 class="result-title">Results</h2></center>
+            <p id="result" class="result-value">Your carbon footprint will be shown here.</p>
+            <canvas id="myChart" width="400" height="400"></canvas>
+        </div>
+
+    </div>
+
+
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <script>
+       function calculateFootprint() {
+           const bananaWaste = parseFloat(document.getElementById('banana-waste').value) || 0;
+           const plasticWaste = parseFloat(document.getElementById('plastic-waste').value) || 0;
+           const paperWaste = parseFloat(document.getElementById('paper-waste').value) || 0;
+
+           const bananaFootprint = bananaWaste * 0.1;  // 0.1 kg CO2 per kg
+           const plasticFootprint = plasticWaste * 0.3;  // 0.3 kg CO2 per kg
+           const paperFootprint = paperWaste * 0.2;  // 0.2 kg CO2 per kg
+
+           const totalFootprint = bananaFootprint + plasticFootprint + paperFootprint;
+
+           document.getElementById('result').textContent = `Total Carbon Footprint: ${totalFootprint.toFixed(2)} kg CO2`;
+
+           // Plot data on a bar chart
+           const ctx = document.getElementById('myChart').getContext('2d');
+           new Chart(ctx, {
+               type: 'bar',
+               data: {
+                   labels: ['Organic', 'Plastic', 'Paper'],
+                   datasets: [{
+                       label: 'Carbon Footprint (kg CO2)',
+                       data: [bananaFootprint, plasticFootprint, paperFootprint],
+                       backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)'],
+                       borderColor: ['rgba(75, 192, 192, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)'],
+                       borderWidth: 1
+                   }]
+               },
+               options: {
+                   scales: {
+                       y: {
+                           beginAtZero: true
+                       }
+                   }
+               }
+           });
+       }
+   </script>
+
+</body>
+</html>

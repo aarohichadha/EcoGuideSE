@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoGuide</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+        <link rel="shortcut icon" href="logo.png">
+    <link rel="stylesheet" href="page1.css">
+</head>
+<body>
+    <div class="background-section">
+    <header>
+        <div class="header-content">
+
+        <span class = 'logo'>
+            <img src="./logo.png" alt="">
+        </span>
+        <nav class="nav-options">
+            <a href="EcoSort.html">EcoSort</a>
+            <a href="page3.html">CarbonCalc</a>
+            <a href="page4.html">Green Tips</a>
+        </nav>
+  
+    </div>
+    </header>
+</div>
+
+<div class="quote-container">
+<!--     <h2 class="quote-heading">Quotes</h2> -->
+    <div class="quote-box">
+        <p id="quote" class="quote"></p>
+    </div>
+</div>
+
+<script>
+    // Typing effect function
+    const quoteText = "Waste less, energize more! Each tiny action fuels a greener planet, creating waves of change for a brighter tomorrow!";
+    let index = 0;
+    const quoteElement = document.getElementById('quote');
+
+    function typeQuote() {
+        if (index < quoteText.length) {
+            quoteElement.innerHTML += quoteText.charAt(index);
+            index++;
+            setTimeout(typeQuote, 50); // Adjust typing speed here
+        }
+    }
+
+    // Start typing effect on page load
+    window.onload = typeQuote;
+</script>
+
+</body>
+</html>

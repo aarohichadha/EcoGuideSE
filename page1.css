@@ -1,0 +1,103 @@
+html,body{
+  
+        margin: 0;
+        padding: 0;
+        height: 100%;
+  
+}
+.background-section {
+  position: relative; /* Position relative for absolute positioning of the overlay */
+  height: 100vh; /* Full viewport height */
+  background-image: url('./bg.png');
+  background-size: cover; /* Cover the entire area */
+  background-position: center -60%; /* Center the image */
+  background-repeat: no-repeat; /* Prevent tiling */
+}
+
+
+.logo img{
+  width: 130px;
+}
+
+.header-content {
+  display: flex;                   /* Create a flex container */
+  justify-content: space-between;  /* Space between logo and navigation */
+  align-items: center;             /* Vertically center content */
+}
+header {
+    background-color:  rgba(0, 134, 60, 1);  
+    padding: 10px 10px;        
+    border-bottom-left-radius: 40px; 
+    border-bottom-right-radius: 40px; 
+    position: relative;
+    z-index: 2; /* Ensure header appears above overlay */
+    padding: 10px 20px;
+    color: white; /* Change color as needed */
+}
+.nav-options {
+  display: flex;                  /* Align links in a row */
+  margin-left: auto;              /* Pushes the links to the right */
+}
+
+.nav-options a {
+margin-left: 150px;     /* Spacing between the links */
+color: white;          /* Link text color */
+text-decoration: none; /* Remove underline */
+font-size: 20px;      
+font-weight: bold;   
+transition: transform 0.3s ease;
+padding:30px;
+font-family: "Afacad", sans-serif;
+}
+.nav-options a:hover {
+  text-decoration: underline; /* Underline when hovered */
+  transform: scale(1.1);   
+}
+
+
+.main-heading {
+  position: relative; /* Keep it in the normal flow */
+  z-index: 0; /* Ensure the heading appears above the overlay */
+  color: white; /* Change color to fit your design */
+  text-align: center; /* Center the heading */
+  font-size: 500px; /* Adjust size as needed */
+  margin-top: 20px; /* Add spacing above the heading */
+  font-family: Arial, sans-serif; /* Change font as needed */
+}
+
+.quote-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* height: 100%; Full height of the section */
+  padding: 20px; /* Padding around the quote */
+  background-color: rgba(0, 134, 60, 1);
+}
+
+.quote-heading {
+  font-size: 2em;
+  color: black;
+  margin-bottom: 30px; /* Space below the heading */
+}
+
+.quote-box {
+  background-color: rgba(200, 200, 200, 0.7); /* Light gray with transparency */
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  max-width: 600px; /* Limit the width */
+  text-align: center;
+  transition: transform 0.3s ease; /* Add transition for hover effect */
+}
+
+.quote-box:hover {
+  transform: scale(1.05); /* Scale effect on hover */
+}
+
+.quote {
+  font-size: 1.5em;
+  color: black;
+  line-height: 1.6;
+  margin-top: -10px; /* Space above the quote */
+}
